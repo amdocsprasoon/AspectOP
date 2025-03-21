@@ -1,5 +1,6 @@
 package org.sebprojects.aspectop;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -13,13 +14,12 @@ public class LoggingAspect {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Before("execution(* org.sebprojects.aspectop.BusinessService.*(..))")
-    public void logBefore() {
-    logger.info("Executing findTheGreatestFromAllData method in ASPECT PARADIGM");
+    public void logBefore(JoinPoint joinPoint) {
+    logger.info("Executing findTheGreatestFromAllData method in ASPECT PARADIGM {} ", joinPoint);
     }
 
     @Before("execution(* org.sebprojects.aspectop.DataRepository.*(..))")
     public void logBefore2() {
         logger.info("Executing DetaRepository method in ASPECT PARADIGM");
     }
-
 }
